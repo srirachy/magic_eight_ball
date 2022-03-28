@@ -1,0 +1,21 @@
+/* general css for all elements */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* set body and html height to 100%*/
+body, html{
+    height: 100%;
+}
+
+/* add some margin to main */
+main{
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+#theInput{
+    width: 100%;
+}
