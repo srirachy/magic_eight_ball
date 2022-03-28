@@ -1,4 +1,5 @@
 //create bare bones -- start by initializing body
+//check way to refactor barebones section via slack
 const theBody = document.getElementsByTagName('body')[0];
 //header
 const theHeader = document.createElement("header");

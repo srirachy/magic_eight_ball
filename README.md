@@ -14,7 +14,7 @@ This project has the following requirements:
 This project utilizes CSS and JS to run.
 
 ## Prerequisites
-- Understanding JavaScript
+- Understanding of JavaScript
 - Strong understanding of HTML5
 
 ## Installation
