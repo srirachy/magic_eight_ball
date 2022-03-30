@@ -156,7 +156,7 @@ yeetButton.addEventListener('click', () => {
 
 const checkQuestion = () => {
     const userText = userInput.value;
-    if (userText.length <= 1){
+    if (userText.length === 0){
         alert('Please enter a question');
         return false;
     }
