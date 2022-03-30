@@ -34,7 +34,7 @@ userInput.setAttribute('placeholder', 'Enter Question');
 inputLabel.textContent = 'Ask Me Anything!';
 askButton.textContent = 'Ask It';
 yeetButton.textContent = 'Yeet It';
-qHeader.textContent = "placeholder";
+qHeader.textContent = "";
 //append elements
 sectOne.append(ballDiv);
 ballDiv.append(ballImg);
@@ -51,12 +51,14 @@ ballImg.alt = 'Idle magic eightball image';
 //initialize buttons by id (mostly for toggle function)
 const askButtonById = document.getElementById('askButton');
 const yeetButtonById = document.getElementById('yeetButton');
+const inputFieldById = document.getElementById('theInput');
+const q = document.getElementById('qHeader');
 
 //build out the template using template literal 
 function buildSkeleton(){
     const skeleton = `
     <header>
-
+        <h1>Magic Eight Ball</h1>
     </header>
 
     <main>
@@ -77,7 +79,32 @@ function buildSkeleton(){
     </main>
 
     <footer>
-    </footer>`
+        <div id="footer_container">
+            <div id="footer_flex_parent">
+                <div id="icon_section">
+                    <a class="icons rounded-circle"
+                        href="https://twitter.com/?lang=en" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-twitter fa-lg text-white"></i></a>
+                    <a class="icons rounded-circle"
+                        href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-facebook-f fa-lg"></i></a>
+                    <a class="icons rounded-circle"
+                        href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-instagram fa-lg"></i></a>
+                    <a class="icons rounded-circle"
+                        href="https://discord.com/" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-brands fa-discord fa-lg"></i></a>
+                </div>
+                <p class="bg-black bg-opacity-75" id="text_section">
+                    <span class="text-white">&copy; srirachy. Design</span>
+                    <a class="text-white" href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">Figma</a>
+                    <span class="text-white">. Images:</span>
+                    <a class="text-white" href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>
+                    <span class="text-white">.</span>
+                </p>
+            </div>
+        </div>
+    </footer>`;
 
     //insert skeleton at the end of the body tag
     theBody.insertAdjacentHTML('beforeend', skeleton);
@@ -85,35 +112,93 @@ function buildSkeleton(){
 
 //ask button functionality
 askButton.addEventListener('click',() => {
-    toggleButton(askButton, yeetButton);
-    playShakeSound();
-    ballImg.classList.add('shakeIt');
-    resetEightBall(askButton);
-    //animation segment
-    setTimeout(() => {
-        ballImg.classList.remove('shakeIt');
-        setEightBall();
-        toggleButton(askButton, yeetButton);
-    }, 1000)
+    let isTrue = true;
+    isTrue = checkQuestion();
+    if (isTrue === true){
+        setText();
+        toggleItems();
+        playShakeSound();
+        ballImg.classList.add('shakeIt');
+        resetEightBall(askButton);
+        //animation segment
+        setTimeout(() => {
+            ballImg.classList.remove('shakeIt');
+            setEightBall();
+            toggleItems();
+            resetField();
+        }, 1000)
+    }
 });
 
 //yeet button functionality
 yeetButton.addEventListener('click', () => {
-    toggleButton(yeetButton, askButton);
-    yellYeet();
-    ballImg.classList.add('yeetIt');
-    resetEightBall();
-    //animation segment
-    setTimeout(() => {
-        ballImg.classList.remove('yeetIt');
-        ballImg.classList.add('rollIn');
+    let isTrue = true;
+    isTrue = checkQuestion();
+    if (isTrue === true){
+        setText();
+        toggleItems();
+        yellYeet();
+        ballImg.classList.add('yeetIt');
+        resetEightBall();
+        //animation segment
         setTimeout(() => {
-            ballImg.classList.remove('rollIn');
-            setEightBall();
-            toggleButton(yeetButton, askButton);
-        }, 3000)
-    }, 500)
+            ballImg.classList.remove('yeetIt');
+            ballImg.classList.add('rollIn');
+            setTimeout(() => {
+                ballImg.classList.remove('rollIn');
+                setEightBall();
+                toggleItems();
+                resetField();
+            }, 3000)
+        }, 500)
+    }
 });
+
+const checkQuestion = () => {
+    const userText = userInput.value;
+    if (userText.length <= 1){
+        alert('Please enter a question');
+        return false;
+    }
+    return true;
+}
+
+// set text to user input
+const setText = () => {
+    const userText = userInput.value;
+    const lastChar = userText.charAt(userText.length-1);
+    if (lastChar === '?'){
+        q.innerHTML = `The Question: ${userText}`;
+    } else{
+        q.innerHTML = `The Question: ${userText}?`;
+    }
+}
+
+const resetField = () => {
+    userInput.value = "";
+}
+
+// toggle enable/disable button
+const toggleItems = () => {
+    //toggle current button
+    (askButtonById.disabled === true) ? askButtonById.disabled = false : askButtonById.disabled = true;
+    //toggle other button
+    (yeetButtonById.disabled === true) ? yeetButtonById.disabled = false : yeetButtonById.disabled = true;
+    //toggle input field
+    (inputFieldById.disabled === true) ? inputFieldById.disabled = false : inputFieldById.disabled = true;
+};
+
+// play eight ball shake sound
+const playShakeSound = () => {
+    theSound = document.getElementById('shake');
+    theSound.play();
+};
+
+//  play yeet sound
+const yellYeet = () => {
+    let yeet = document.getElementById("yeet");
+    yeet.play();
+};
 
 // reset eight ball
 const resetEightBall = (theButton) => {
@@ -132,26 +217,6 @@ const setEightBall = () => {
     const rAccText = getAccText(rNum);
     ballImg.src = rImg;
     ballImg.alt = rAccText;
-};
-
-// toggle enable/disable button
-const toggleButton = (curButton, otherButton) => {
-    //toggle current button
-    (curButton.disabled === true) ? curButton.disabled = false : curButton.disabled = true;
-    //toggle other button
-    (otherButton.disabled === true) ? otherButton.disabled = false : otherButton.disabled = true;
-};
-
-// play eight ball shake sound
-const playShakeSound = () => {
-    theSound = document.getElementById('shake');
-    theSound.play();
-};
-
-//  play yeet sound
-const yellYeet = () => {
-    let yeet = document.getElementById("yeet");
-    yeet.play();
 };
 
 //tenary to create string name of image ft math.random to generate random number between 1-20
