@@ -95,11 +95,11 @@ function buildSkeleton(){
                         href="https://discord.com/" target="_blank" rel="noopener noreferrer"><i
                             class="fab fa-brands fa-discord fa-lg"></i></a>
                 </div>
-                <p class="bg-black bg-opacity-75" id="text_section">
-                    <span class="text-white">&copy; srirachy. Design</span>
-                    <a class="text-white" href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">Figma</a>
-                    <span class="text-white">. Images:</span>
-                    <a class="text-white" href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>
+                <p id="text_section">
+                    <span>&copy; srirachy. Design</span>
+                    <a class="hyperlink" href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">Figma</a>
+                    <span>. Images:</span>
+                    <a class="hyperlink" href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>
                     <span class="text-white">.</span>
                 </p>
             </div>

@@ -9,13 +9,13 @@
 
 /* set body and html height to 100%*/
 html{
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
 header{
     width: 100%;
-    background-color: rgba(128, 128, 128, 0.3);
+    background-color: rgba(128, 128, 128, 0.2);
     height: 10vh;
     overflow: hidden;
     display: flex;
@@ -33,7 +33,7 @@ body{
     max-height: 100%;
     max-width: 100%;
     overflow: auto;
-    background: url('/img/bkg_img.jpg') no-repeat center center fixed;
+    background-image: url('/img/bkg_img.jpg');
     background-size: cover;
 }
 
@@ -142,7 +142,7 @@ body{
 #footer_container{
     width: 100%;
     height: 15vh;
-    background-color: rgba(128, 128, 128, 0.3);
+    background-color: rgba(128, 128, 128, 0.2);
     overflow: hidden;
 }
 
@@ -176,9 +176,23 @@ body{
     color: #ffffff;
 }
 
+.fab:hover{
+    opacity: 50%;
+}
+
 #text_section{
     margin-top: 1vh;
     text-align: center;
+
+}
+
+.hyperlink{
+    text-decoration: none;
+}
+
+.hyperlink:hover{
+    text-decoration: underline;
+    opacity: 50%;
 }
 
 /* css for animations */
