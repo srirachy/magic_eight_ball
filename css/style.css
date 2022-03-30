@@ -8,16 +8,73 @@
 /* set body and html height to 100%*/
 body, html{
     height: 100%;
-}
-
-#theInput{
-    width: 100%; 
-}
-
-#answers{
     overflow: hidden;
 }
 
+#theArticle{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#sectOne{
+    display: flex;
+    justify-content: center;
+}
+
+/* css for eightball images */
+#answers{
+    align-self: center;
+}
+
+#eightball{
+    width: 100%;
+    height: auto;
+}
+
+#sectTwo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#inputDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+#inputLabel{
+    align-self: center;
+    font-size: 1.4rem;
+}
+
+#theInput{
+    align-self: center;
+    width: 16.5vw;
+    font-size: 1.2rem;
+    margin-top: 2vh;
+}
+
+#buttonDiv{
+    display: flex;
+    gap: 10px;
+    margin-top: 1vh;
+}
+
+#askButton{
+    width: 8vw;
+    font-size: 1.2rem;
+    overflow: hidden;
+}
+
+#yeetButton{
+    width: 8vw;
+    font-size: 1.2rem;
+    overflow: hidden;
+}
+
+/* css for animations */
 .shakeIt{
     animation: shake 1s;
 }
