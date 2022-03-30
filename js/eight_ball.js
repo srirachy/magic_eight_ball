@@ -1,53 +1,112 @@
-//create bare bones -- start by initializing body
-//check way to refactor barebones section via slack
+//initialize body element, call build skeleton, then initialize elements from skeleton
 const theBody = document.getElementsByTagName('body')[0];
-//header
-const theHeader = document.createElement("header");
-theBody.append(theHeader);
-//main
-const theMain = document.createElement("main");
-theBody.append(theMain);
-//footer
-const theFoot = document.createElement("footer");
-theBody.append(theFoot);
+//call build skeleton to create html components
+buildSkeleton();
+const theHeader = document.getElementsByTagName('header')[0];
+const theMain = document.getElementsByTagName('main')[0];
+const theFooter = document.getElementsByTagName('footer')[0];
 
-//sectionOne?
-const sectOne = document.createElement("section");
-sectOne.id = "sectOne";
-theMain.append(sectOne);
 //create ball divider
 const ballDiv = document.createElement('div');
 ballDiv.id = 'answers';
 sectOne.append(ballDiv);
 //ballImg
 const ballImg = document.createElement('img');
+ballImg.id = 'eightball';
 ballDiv.append(ballImg);
 ballImg.src = './img/magic8ball_start.png';
-ballImg.alt = 'Idle magic eightball image'
+ballImg.alt = 'Idle magic eightball image';
 //user input
 const userInput = document.createElement("input");
 userInput.id = 'theInput'
 userInput.setAttribute("type", "text");
 userInput.setAttribute("placeholder", "Ask me anything!");
 sectOne.append(userInput);
-//button
+//ask button
 const askButton = document.createElement("button");
 askButton.id = 'askButton';
 askButton.textContent = 'meow';
 sectOne.append(askButton);
-//onclick funcion
-document.getElementById('askButton').onclick = function() {
-    const rNum = getRandomNum();
-    const rImg = getImgName(rNum);
-    const rAccText = getAccText(rNum);
-    ballImg.src = rImg;
-    ballImg.alt = rAccText;
-};
+//yeet button
+const yeetButton = document.createElement("button");
+yeetButton.id = 'yeetButton';
+yeetButton.textContent = 'yeet'
+sectOne.append(yeetButton);
+
+//build out the template using template literal 
+function buildSkeleton(){
+    const skeleton = `
+    <header>
+    </header>
+
+    <main>
+        <section id="sectOne">
+        </section>
+        <aside>
+        <audio id="yeet">
+            <source src="./media/Yeet-sound-effect.mp3" type="audio/mpeg">
+        </audio>
+    </aside>
+    </main>
+
+    <footer>
+    </footer>`
+
+    //insert skeleton at the end of the body tag
+    theBody.insertAdjacentHTML('beforeend', skeleton);
+}
+
+//ask button functionality
+askButton.addEventListener('click',() => {
+    ballImg.classList.add('shakeIt');
+    ballImg.src = './img/magic8ball_start.png';
+    ballImg.alt = 'Magic eightball in motion';
+    setTimeout(() => {
+        ballImg.classList.remove('shakeIt');
+        const rNum = getRandomNum();
+        console.log(rNum);
+        const rImg = getImgName(rNum);
+        const rAccText = getAccText(rNum);
+        ballImg.src = rImg;
+        ballImg.alt = rAccText;
+    }, 1000)
+});
+
+//yeet button functionality
+yeetButton.addEventListener('click', () => {
+    yellYeet();
+    ballImg.classList.add('yeetIt');
+    ballImg.src = './img/magic8ball_start.png';
+    ballImg.alt = 'Magic eightball thrown';
+    yeetButton.disabled = true;
+    setTimeout(() => {
+        ballImg.classList.remove('yeetIt');
+        ballImg.classList.add('rollIn');
+        setTimeout(() => {
+            ballImg.classList.remove('rollIn');
+            const rNum = getRandomNum();
+            console.log(rNum);
+            const rImg = getImgName(rNum);
+            const rAccText = getAccText(rNum);
+            ballImg.src = rImg;
+            ballImg.alt = rAccText;
+        }, 3000)
+    }, 500)
+    yeetButton.disabled = false;
+}
+);
+
+//  play yeet sound
+const yellYeet = () => {
+    let yeet = document.getElementById("yeet");
+    yeet.play();
+    return;
+}
 
 //tenary to create string name of image ft math.random to generate random number between 1-20
 const getRandomNum = () => {
-    //(max - min) + 1 + min == (20 - 1 + 1) ) 1
-    return Math.floor(Math.random() * (20 - 1 + 1) + 1);
+    //(max - min) + 1 + min == 20 + 1 cuz - min + min = 0
+    return Math.floor(Math.random() * 20 + 1);
 };
 
 //generate string to retrieve random image
@@ -102,4 +161,4 @@ const getAccText = (randoNum) => {
             return 'This should never happen';
 
     }
-}
+};

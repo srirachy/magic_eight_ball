@@ -10,12 +10,54 @@ body, html{
     height: 100%;
 }
 
-/* add some margin to main */
-main{
-    margin-left: 10vw;
-    margin-right: 10vw;
+#theInput{
+    width: 100%; 
 }
 
-#theInput{
-    width: 100%;
+#answers{
+    overflow: hidden;
+}
+
+.shakeIt{
+    animation: shake 1s;
+}
+
+.yeetIt{
+    animation: yeet .5s linear;
+}
+
+.rollIn{
+    animation: roll 3s linear;
+}
+
+@keyframes shake {
+    0% { transform: translate(30px, 30px) rotate(0deg); }
+    10% { transform: translate(-30px, -40px) rotate(-1deg); }
+    20% { transform: translate(-50px, 0px) rotate(1deg); }
+    30% { transform: translate(50px, 40px) rotate(0deg); }
+    40% { transform: translate(30px, -30px) rotate(1deg); }
+    50% { transform: translate(-30px, 40px) rotate(-1deg); }
+    60% { transform: translate(-50px, 30px) rotate(0deg); }
+    70% { transform: translate(50px, 30px) rotate(-1deg); }
+    80% { transform: translate(-30px, -30px) rotate(1deg); }
+    90% { transform: translate(30px, 50px) rotate(0deg); }
+    100% { transform: translate(30px, -50px) rotate(-1deg); }
+}
+
+@keyframes yeet{
+    0% {
+        transform:translate(0px, 0px) rotate(-360deg);
+    }
+    100% {
+        transform: translate(1000px, -1000px);
+    }
+}
+
+@keyframes roll{
+    0%{
+        transform: translate(3000px, 0px) rotate(720deg);
+    }
+    100%{
+        transform: translate(0px, 0px);
+    }
 }
