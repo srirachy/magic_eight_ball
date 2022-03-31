@@ -1,6 +1,5 @@
 //initialize body element
 const theBody = document.getElementsByTagName('body')[0];
-theBody.style.backgroundImage = "url(./img/bkg_img.jpg)";
 //call build skeleton to create html components
 buildSkeleton();
 //initialize elemenets from skeleton
@@ -55,7 +54,7 @@ const yeetButtonById = document.getElementById('yeetButton');
 const inputFieldById = document.getElementById('theInput');
 const q = document.getElementById('qHeader');
 
-//build out the template using template literal 
+//build out html baseline using template literal 
 function buildSkeleton(){
     const skeleton = `
     <header>
@@ -83,18 +82,14 @@ function buildSkeleton(){
         <div id="footer_container">
             <div id="footer_flex_parent">
                 <div id="icon_section">
-                    <a class="icons rounded-circle"
-                        href="https://twitter.com/?lang=en" target="_blank" rel="noopener noreferrer"><i
-                            class="fab fa-twitter fa-lg text-white"></i></a>
-                    <a class="icons rounded-circle"
-                        href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><i
-                            class="fab fa-facebook-f fa-lg"></i></a>
-                    <a class="icons rounded-circle"
-                        href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><i
-                            class="fab fa-instagram fa-lg"></i></a>
-                    <a class="icons rounded-circle"
-                        href="https://discord.com/" target="_blank" rel="noopener noreferrer"><i
-                            class="fab fa-brands fa-discord fa-lg"></i></a>
+                    <a class="icons rounded-circle" href="https://twitter.com/?lang=en" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter fa-lg text-white"></i></a>
+                    <a class="icons rounded-circle" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a class="icons rounded-circle" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram fa-lg"></i></a>
+                    <a class="icons rounded-circle" href="https://discord.com/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-brands fa-discord fa-lg"></i></a>
                 </div>
                 <p id="text_section">
                     <span>&copy; srirachy. Design:</span>
@@ -107,6 +102,8 @@ function buildSkeleton(){
         </div>
     </footer>`;
 
+    //load background image
+    theBody.style.backgroundImage = "url(./img/bkg_img.jpg)";  
     //insert skeleton at the end of the body tag
     theBody.insertAdjacentHTML('beforeend', skeleton);
 }
@@ -155,6 +152,7 @@ yeetButton.addEventListener('click', () => {
     }
 });
 
+// add question mark if missing from user input
 const checkQuestion = () => {
     const userText = userInput.value;
     if (userText.length === 0){
@@ -175,6 +173,7 @@ const setText = () => {
     }
 }
 
+// reset input text field
 const resetField = () => {
     userInput.value = "";
 }

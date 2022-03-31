@@ -34,7 +34,6 @@ body{
     max-height: 100%;
     max-width: 100%;
     overflow: auto;
-    /* background-image: url(/img/bkg_img.jpg); */
     background-size: cover;
 }
 
@@ -123,10 +122,8 @@ body{
     background-color: #808080;
 }
 
+/* media queries for some responsive design */
 @media only screen and (max-width: 767px){
-    h1{
-        font-size: 2rem;
-    }
     #buttonDiv{
         width: 80vw;
         max-width: 900px;
@@ -139,6 +136,12 @@ body{
         width: 100%;
         min-width: 190px;
         max-width: 525px;
+    }
+}
+
+@media only screen and (max-width: 599px){
+    h1{
+        font-size: 3rem;
     }
 }
 
