@@ -189,6 +189,9 @@ body{
     text-align: center;
     align-items: center;
     margin-bottom: 4vh;
+    background-color: #808080;
+    border-radius: 25px;
+    min-width: 14vw;
 }
 
 .hyperlink{
