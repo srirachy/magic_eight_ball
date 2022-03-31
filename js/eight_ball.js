@@ -1,5 +1,6 @@
 //initialize body element
 const theBody = document.getElementsByTagName('body')[0];
+theBody.style.backgroundImage = "url('/img/bkg_img.jpg')";
 //call build skeleton to create html components
 buildSkeleton();
 //initialize elemenets from skeleton

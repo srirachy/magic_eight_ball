@@ -34,7 +34,7 @@ body{
     max-height: 100%;
     max-width: 100%;
     overflow: auto;
-    background-image: url(/img/bkg_img.jpg);
+    /* background-image: url(/img/bkg_img.jpg); */
     background-size: cover;
 }
 
@@ -124,6 +124,9 @@ body{
 }
 
 @media only screen and (max-width: 767px){
+    h1{
+        font-size: 2rem;
+    }
     #buttonDiv{
         width: 80vw;
         max-width: 900px;
@@ -142,9 +145,8 @@ body{
 /* footer css */
 #footer_container{
     width: 100%;
-    height: 15vh;
+    height: auto;
     background-color: rgba(128, 128, 128, 0.2);
-    overflow: hidden;
 }
 
 #footer_flex_parent{
@@ -158,7 +160,7 @@ body{
     min-width: 10vw;
     gap: 10px;
     display: flex;
-    margin-top: 5vh;
+    margin-top: 4vh;
     justify-content: space-evenly;
 }
 
@@ -183,8 +185,10 @@ body{
 
 #text_section{
     margin-top: 1vh;
+    height: auto;
     text-align: center;
-
+    align-items: center;
+    margin-bottom: 4vh;
 }
 
 .hyperlink{
