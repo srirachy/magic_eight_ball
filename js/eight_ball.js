@@ -45,14 +45,14 @@ inputContain.append(userInput);
 sectTwo.append(buttonContain);
 buttonContain.append(askButton);
 buttonContain.append(yeetButton);
-//set to idle eight ball
-ballImg.src = './img/magic8ball_start.png';
-ballImg.alt = 'Idle magic eightball image';
 //initialize buttons by id (mostly for toggle function)
 const askButtonById = document.getElementById('askButton');
 const yeetButtonById = document.getElementById('yeetButton');
 const inputFieldById = document.getElementById('theInput');
 const q = document.getElementById('qHeader');
+//set to idle eight ball
+ballImg.src = './img/magic8ball_start.png';
+ballImg.alt = 'Idle magic eightball image';
 
 //build out html baseline using template literal 
 function buildSkeleton(){
@@ -108,8 +108,17 @@ function buildSkeleton(){
     theBody.insertAdjacentHTML('beforeend', skeleton);
 }
 
-//ask button functionality
-askButton.addEventListener('click',() => {
+// event delegation for buttons
+buttonContain.addEventListener('click', (event) => {
+    if(event.target.matches('#askButton')){
+        runAskButton();     //ask it
+    } else if (event.target.matches('#yeetButton')){
+        runYeetButton();    //yeet it
+    }
+});
+
+// ask button functionality
+const runAskButton = () => {
     let isTrue = true;
     isTrue = checkQuestion();
     if (isTrue === true){
@@ -126,10 +135,10 @@ askButton.addEventListener('click',() => {
             resetField();
         }, 1000)
     }
-});
+};
 
-//yeet button functionality
-yeetButton.addEventListener('click', () => {
+// yeet button functionality
+const runYeetButton = () => {
     let isTrue = true;
     isTrue = checkQuestion();
     if (isTrue === true){
@@ -150,7 +159,7 @@ yeetButton.addEventListener('click', () => {
             }, 3000)
         }, 500)
     }
-});
+};
 
 // add question mark if missing from user input
 const checkQuestion = () => {
@@ -160,7 +169,7 @@ const checkQuestion = () => {
         return false;
     }
     return true;
-}
+};
 
 // set text to user input
 const setText = () => {
@@ -171,12 +180,12 @@ const setText = () => {
     } else{
         q.innerHTML = `The Question: ${userText}?`;
     }
-}
+};
 
 // reset input text field
 const resetField = () => {
     userInput.value = "";
-}
+};
 
 // toggle enable/disable button
 const toggleItems = () => {
