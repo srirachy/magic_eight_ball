@@ -23,6 +23,7 @@ header{
 
 h1{
     width: 100%;
+    height: auto;
     align-self: center;
     text-align: center;
     font-family: 'Tangerine', cursive;
@@ -33,7 +34,7 @@ body{
     max-height: 100%;
     max-width: 100%;
     overflow: auto;
-    background-image: url('/img/bkg_img.jpg');
+    background-image: url(/img/bkg_img.jpg);
     background-size: cover;
 }
 

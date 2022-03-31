@@ -96,7 +96,7 @@ function buildSkeleton(){
                             class="fab fa-brands fa-discord fa-lg"></i></a>
                 </div>
                 <p id="text_section">
-                    <span>&copy; srirachy. Design</span>
+                    <span>&copy; srirachy. Design:</span>
                     <a class="hyperlink" href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">Figma</a>
                     <span>. Images:</span>
                     <a class="hyperlink" href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>
