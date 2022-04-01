@@ -2,10 +2,6 @@
 const theBody = document.getElementsByTagName('body')[0];
 //call build skeleton to create html components
 buildSkeleton();
-//initialize elemenets from skeleton
-const theHeader = document.getElementsByTagName('header')[0];
-const theMain = document.getElementsByTagName('main')[0];
-const theFooter = document.getElementsByTagName('footer')[0];
 //create elements
 const ballDiv = document.createElement('div');
 const ballImg = document.createElement('img');
@@ -123,7 +119,7 @@ const runAskButton = () => {
     isTrue = checkQuestion();
     if (isTrue === true){
         setText();
-        toggleItems();
+        toggleItems();  //disable field & buttons
         playShakeSound();
         ballImg.classList.add('shakeIt');
         resetEightBall(askButton);
@@ -131,7 +127,7 @@ const runAskButton = () => {
         setTimeout(() => {
             ballImg.classList.remove('shakeIt');
             setEightBall();
-            toggleItems();
+            toggleItems();  //enable field & buttons
             resetField();
         }, 1000)
     }
@@ -143,7 +139,7 @@ const runYeetButton = () => {
     isTrue = checkQuestion();
     if (isTrue === true){
         setText();
-        toggleItems();
+        toggleItems();  //disable field & buttons
         yellYeet();
         ballImg.classList.add('yeetIt');
         resetEightBall();
@@ -154,7 +150,7 @@ const runYeetButton = () => {
             setTimeout(() => {
                 ballImg.classList.remove('rollIn');
                 setEightBall();
-                toggleItems();
+                toggleItems();  //enable field & buttons
                 resetField();
             }, 3000)
         }, 500)
@@ -187,11 +183,10 @@ const resetField = () => {
     userInput.value = "";
 };
 
-// toggle enable/disable button
+// toggle enable/disable button & field
 const toggleItems = () => {
-    //toggle current button
+    //toggle buttons using ternary operator
     (askButtonById.disabled === true) ? askButtonById.disabled = false : askButtonById.disabled = true;
-    //toggle other button
     (yeetButtonById.disabled === true) ? yeetButtonById.disabled = false : yeetButtonById.disabled = true;
     //toggle input field
     (inputFieldById.disabled === true) ? inputFieldById.disabled = false : inputFieldById.disabled = true;
@@ -209,13 +204,13 @@ const yellYeet = () => {
     yeet.play();
 };
 
-// reset eight ball
+// reset eight ball (only happens only when eightball is shaken or thrown)
 const resetEightBall = (theButton) => {
     ballImg.src = './img/magic8ball_start.png';
-    if (theButton == askButton){
+    if (theButton === askButton){
         ballImg.alt = 'Magic eightball is shaking';
     } else {
-        ballImg.alt = 'Magic eightball thrown';
+        ballImg.alt = 'Magic eightball is yeeted';
     }
 };
 
