@@ -112,6 +112,12 @@ buttonContain.addEventListener('click', (event) => {
         runYeetButton();    //yeet it
     }
 });
+//press enter button to ask it -- inspiration from izzy
+theInput.addEventListener("keyup", function(event){
+    if(event.code === 'Enter'){
+        askButtonById.click();
+    }
+})
 
 // ask button functionality
 const runAskButton = () => {
@@ -157,7 +163,7 @@ const runYeetButton = () => {
     }
 };
 
-// add question mark if missing from user input
+// check if there is any text within input field, trigger alert if none
 const checkQuestion = () => {
     const userText = userInput.value;
     if (userText.length === 0){
@@ -167,7 +173,7 @@ const checkQuestion = () => {
     return true;
 };
 
-// set text to user input
+// set text to user input and add question mark if missing from user input
 const setText = () => {
     const userText = userInput.value;
     const lastChar = userText.charAt(userText.length-1);
@@ -223,13 +229,13 @@ const setEightBall = () => {
     ballImg.alt = rAccText;
 };
 
-//tenary to create string name of image ft math.random to generate random number between 1-20
+//math.random to generate random number between 1-20
 const getRandomNum = () => {
     //(max - min) + 1 + min == 20 + 1 cuz - min + min = 0
     return Math.floor(Math.random() * 20 + 1);
 };
 
-//generate string to retrieve random image
+//generate string to retrieve random image using template literal
 const getImgName = (randoNum) => {
     return `./img/magic8ball_${randoNum}.png`;
 };
